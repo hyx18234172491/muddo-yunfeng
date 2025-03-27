@@ -22,6 +22,13 @@ public:
     int events() const { return events_; }
     void set_revents(int revt) { revents_ = revt; }
 
+    // 设置fd相应的事件状态 相当于epoll_ctl add delete
+    void enableReading() { events_ |= kReadEvent; update(); }
+    void disableReading() { events_ &= ~kReadEvent; update(); }
+    void enableWriting() { events_ |= kWriteEvent; update(); }
+    void disableWriting() { events_ &= ~kWriteEvent; update(); }
+    void disableAll() { events_ = kNoneEvent; update(); }
+
     // 设置回调函数对象
     void setReadCallback(ReadEventCallback cb) { readCallback_ = std::move(cb); }
     void setWriteCallback(EventCallback cb) { writeCallback_ = std::move(cb); }
