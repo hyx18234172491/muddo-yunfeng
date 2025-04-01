@@ -51,6 +51,8 @@ public:
     void remove();
 
 private:
+    void update();
+    void handleEventWithGuard(Timestamp receiveTime);
 
     EventLoop *loop_; // 事件循环
     const int fd_;    // fd，Poller监听的对象
@@ -70,6 +72,6 @@ private:
     EventCallback writeCallback_;
     EventCallback closeCallback_;
     EventCallback errorCallback_;
-}
+};
 
 #endif
