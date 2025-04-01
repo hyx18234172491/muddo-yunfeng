@@ -1,5 +1,5 @@
-#pragma once
-
+#ifndef SOCKET_H
+#define SOCKET_H
 #include "noncopyable.h"
 
 class InetAddress;
@@ -29,3 +29,5 @@ public:
 private:
     const int sockfd_;
 };
+
+#endif
